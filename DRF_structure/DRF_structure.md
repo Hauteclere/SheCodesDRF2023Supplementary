@@ -138,4 +138,4 @@ Ok, that's a lot of info. But you made it!
 
 The plan from here on out is for us to run through the process of building an API together using DRF. Next lesson we'll start building the app from the ground up, and as we move through the process we will focus in on each of the elements in that architectural diagram up the top, learning about it in detail.
 
-Your homework is to send your MVP plan to me by Saturday. Take a look at the project requirements on Thinkific, and send me a link via slack to your Git repo. :)
+Your homework is to send your MVP plan to me by Saturday. Take a look at the project requirements on Thinkific, and send me a link via slack to a Git repo with your planning documents in it. :)
