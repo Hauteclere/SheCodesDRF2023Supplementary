@@ -59,7 +59,9 @@ We still need to know a little bit about what Django is up to with the database,
 
 A relational database is a lot like a super-powered Excel workbook, containing a bunch of tables. Each table has a series of rows, corresponding to individual records, and a set of columns. Each column records a single fact about each record. Crucially, each record has a **Primary Key** - an ID number that identifies it uniquely in its table. There's a good example of a database schema on Thinkific...
 
-Have a think about what kinds of records need to be stored for your app. Each type of record is going to need a table, and each table will need a set of columns to describe the record. Have a go at sketching out a plan for your database tables now. Remember, this is just a draft, it's ok to change it later on!
+Have a think about what kinds of records need to be stored for your app. Each type of record is going to need a table, and each table will need a set of **fields** ("columns") to describe the record. Have a go at sketching out a schema for your database tables now. Remember, this is just a draft, it's ok to change it later on! 
+
+Remember, the schema *describes* the database tables, so you should record what fields will exist and what data they will contain. This is distinct from writing down a table with example rows in it. Check out that schema example on Thinkific to see what the kind of thing we're looking for.
 
 ## The API
 Next let's zoom in on the area between our DRF app and that mysterious purple box labelled `witchcraft`...
