@@ -1,5 +1,27 @@
 # DRF App Intro 
 
+- [DRF App Intro](#drf-app-intro)
+  - [Out With The Old](#out-with-the-old)
+  - [In With The New](#in-with-the-new)
+    - [The Really Crucial Point](#the-really-crucial-point)
+  - [Let's Brainstorm!](#lets-brainstorm)
+  - [The Database](#the-database)
+  - [The API](#the-api)
+    - [Endpoints](#endpoints)
+    - [REST](#rest)
+  - [REST Verbs/HTTP Methods](#rest-verbshttp-methods)
+    - [GET](#get)
+    - [POST](#post)
+    - [PUT](#put)
+    - [PATCH](#patch)
+    - [DELETE](#delete)
+  - [HTTP Messages](#http-messages)
+    - [Get Request](#get-request)
+    - [Post Request](#post-request)
+  - [JSON](#json)
+  - [What Now?](#what-now)
+
+
 ## Out With The Old
 
 When you created your first app in Django, you were using Django as a **full-stack** platform. Django was handling everything, from the database, to the program logic, to presentation. When you use Django this way, you follow the **MVT** (*Model-View-Template*) design paradigm.
