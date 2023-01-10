@@ -22,11 +22,25 @@ Here's an example of what this architectural paradigm looks like, using the exam
 
 ![An example of a DRF back end architecture](img/DRF_flow.png)
 
-I've included a little more detail here because we'll be looking in depth at each of the elements of this app later on. But you might notice that the only major difference between a Full Stack Django app and a Back End Django Rest Framework app is that we've replaced our `templates.py` file with a `serializers.py` file!
+I've included a little more detail here because we'll be looking in depth at each of the elements of this app later on. But you might notice that the only major structural difference between a Full Stack Django app and a Back End Django Rest Framework app is that we've replaced our `templates.py` file with a `serializers.py` file!
+
+### The Really Crucial Point
+The big difference between what we did before and what we're doing now is that every element of our back-end DRF app is going to be focussed on making "**resources**" available to the front end. "Resources" almost always means **database records**. We want to give the front end a set of "levers" to create, modify and retrieve records, based on the activities of the users.
+
+## Let's Brainstorm!
+Take a moment to plan out the MVP of your project. Rather than digging into detailed wireframes just now, I recommend just plotting out what pages will be required and what the user will be able to do on each one of them. Feel free to sketch out some boxy frames for these pages, but don't go in-depth on how things will look.
+
+## The Database
+We'll be using a relational database for our projects. These databases have their own language (SQL - **S**tructured **Q**uery **L**anguage) and a whole constellation of programs for interacting with them, but great news: Django is going to handle almost all of it for us!
+
+We still need to know a little bit about what Django is up to with the database, though.
+
+A relational database is a lot like a super-powered Excel workbook, containing a bunch of tables. Each table has a series of rows, corresponding to individual records, and a set of columns. Each column records a single fact about each record. Crucially, each record has a **Primary Key** - an ID number that identifies it uniquely in its table. There's a good example of a database schema on Thinkific...
+
+Have a think about what kinds of records need to be stored for your app. Each type of record is going to need a table, and each table will need a set of columns to describe the record. Have a go at sketching out a plan for your database tables now. Remember, this is just a draft, it's ok to change it later on!
 
 ## The API
-
-Let's zoom in on the area between our DRF app and that mysterious purple box labelled `witchcraft`...
+Next let's zoom in on the area between our DRF app and that mysterious purple box labelled `witchcraft`...
 
 For now we don't need to know what happens inside the front end. We know that its job is going to be creating and managing the pages that our users see. That means that when our users do something that generates a request, they'll be talking to the front end.
 
@@ -36,20 +50,54 @@ The end goal of our DRF app project will be to create an app that delivers this 
 
 The particular type of API we'll be building is called a [**REST** API](https://www.redhat.com/en/topics/api/what-is-a-rest-api). This stands for **RE**presentational **S**tate **T**ransfer. REST APIs are useful because they are great at handling multiple requests from different users. They do this by being "*stateless*". This means they don't keep track of a user's information between interactions. Every request that gets sent to the API is totally self-sufficient, and doesn't need to refer to the requests that came before it to make sense. As a result, the back end doesn't need to juggle a lot of half-complete conversations.
 
-## HTTP Messages
+## REST Verbs/HTTP Methods
+REST APIs use a set of a few standard request types. These are called the **REST Verbs**. You may also hear them referred to as **HTTP Methods** or **HTTP Verbs**. They describe the different types of actions that the frontend might request from the backend. The main ones to know are:
 
+### GET
+  * Used for requesting information
+  * Should not change the database contents
+### POST
+  * Used for creating new records
+  * Implies that a new row is being created in a table
+### PUT
+  * Replaces an old record with a new one
+### PATCH
+  * Updates an existing record
+### DELETE
+  * Does what it says on the can. A row is removed from a table.
+
+Have a think about what kinds of requests users will need to make at the API to achieve the MVP functionality of your app. Note these down - there's a good example of an API spec on Thinkific.
+
+## HTTP Messages
 The requests and responses that our API will be dealing with follow a protocol called [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) (**H**yper**T**ext **T**ransfer **P**rotocol). The protocol is just a specified format for messages. If messages weren't in a uniform format it would be very difficult to write programs to deal with them!
 
 When the user triggers behaviour in the front end, it sends a *request* to the back end. The back end does some work and replies with a *response*.
 
-Let's look at the format of an HTTP request and response:
+Let's look at the format of an HTTP request and response - there's a great diagram on thinkific. We'll discuss this in some detail in class.
 
-<object data="./img/request_response_cycle.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="./img/request_response_cycle.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="./img/request_response_cycle.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![The request and response cycle](img/req_and_resp_cycle.png)
 
+First, let's run an example fullstack app, and take a look at the requests it is sending and the responses it is receiving...
 
+[Bird App](http://127.0.0.1:8000/sightings/)
 
+Now, let's look at what those responses might look like from a backend app...
 
+### Get Request
+
+![A get request](./img/get_request.png)
+
+### Post Request
+
+![A Post Request](img/post_request.png)
+
+## JSON
+This is the last acronym for today, I promise. It stands for **J**ava**S**cript **O**bject **N**otation, but don't let that *Javascript* word fool you - JSON is actually used almost universally as a way to transfer data.
+
+When we're manipulating objects in Python, they're stored in our computer's memory as `0`'s and `1`'s. The Python interpreter has it's own way of storing and manipulating them, but this format is unique to Python. Your web browser doesn't run Python, so if we sent these objects over to it as-is, it wouldn't understand us. 
+
+Instead, we need to convert the data into a format that is simple enough to send over-the-wire, and clear enough that it can be read by both humans and computers. JSON is this. 
+
+So we need to learn a whole new language? NOPE! Because Python is excellent, the developers foresaw the need for JSON, and they built their data structures to mimic it. JSON `objects` have the same structure as Python dictionaries, and JSON `arrays` mirror Python lists. Those are the only two structures in JSON. You already know it!
+
+So, for our REST API, the *body* element of our HTTP requests and responses will be in JSON format. We'll have a few lines of code in each of our views dedicated to converting JSON to Python, and back.
