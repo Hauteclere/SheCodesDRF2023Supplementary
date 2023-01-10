@@ -100,15 +100,15 @@ REST APIs use a set of a few standard request types. These are called the **REST
 Have a think about what kinds of requests users will need to make at the API to achieve the MVP functionality of your app. Note these down - there's a good example of an API spec on Thinkific.
 
 ## HTTP Messages
-The requests and responses that our API will be dealing with follow a protocol called [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) (**H**yper**T**ext **T**ransfer **P**rotocol). The protocol is just a specified format for messages. If messages weren't in a uniform format it would be very difficult to write programs to deal with them!
+The requests and responses that our API will be dealing with follow a protocol called [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) (**H**yper**T**ext **T**ransfer **P**rotocol). The protocol is just a specified format for messages. If messages weren't in a uniform format it would be very difficult to write programs to deal with them! HTTP is used for all sorts of apps. In fact your full-stack Django apps were using the same protocol to send pages to the user's browser.
 
-When the user triggers behaviour in the front end, it sends a *request* to the back end. The back end does some work and replies with a *response*.
+When the user triggers behaviour on our front end, it will send a *request* to the back end. The back end will do some work and reply with a *response*.
 
 Let's look at the format of an HTTP request and response - there's a great diagram on thinkific. We'll discuss this in some detail in class.
 
 ![The request and response cycle](img/req_and_resp_cycle.png)
 
-First, let's run an example full-stack app, and take a look at the requests it is sending and the responses it is receiving...
+First, let's run an example full-stack app, and take a look at the requests it is receiving and the responses it is sending...
 
 [Bird App](http://127.0.0.1:8000/sightings/) *I ran this app locally in class, so if you're reading this after the fact you won't be able to access it. But you could use an app you designed in the Django unit to get the same result.*
 
@@ -133,7 +133,7 @@ In a backend app, we follow the same request and response cycle, except that the
 ## JSON
 This is the last acronym for today, I promise. It stands for **J**ava**S**cript **O**bject **N**otation, but don't let that *Javascript* word fool you - JSON is actually used almost universally as a way to transfer data.
 
-When we're manipulating objects in Python, they're stored in our computer's memory as `0`'s and `1`'s. The Python interpreter has it's own way of storing and manipulating them, but this format is unique to Python. Your web browser doesn't run Python, so if we sent these objects over to it as-is, it wouldn't understand us. 
+When we're manipulating objects in Python, they're stored in our computer's memory as `0`'s and `1`'s. The Python interpreter has it's own way of storing and manipulating them, but this format is unique to Python. Your font-end app won't run Python, so if we sent these objects over to it as-is, it wouldn't understand us. 
 
 Instead, we need to convert the data into a format that is simple enough to send over-the-wire, and clear enough that it can be read by both humans and computers. JSON is this. 
 
