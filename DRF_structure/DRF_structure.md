@@ -108,11 +108,15 @@ Let's look at the format of an HTTP request and response - there's a great diagr
 
 ![The request and response cycle](img/req_and_resp_cycle.png)
 
-First, let's run an example fullstack app, and take a look at the requests it is sending and the responses it is receiving...
+First, let's run an example full-stack app, and take a look at the requests it is sending and the responses it is receiving...
 
-[Bird App](http://127.0.0.1:8000/sightings/)
+[Bird App](http://127.0.0.1:8000/sightings/) *I ran this app locally in class, so if you're reading this after the fact you won't be able to access it. But you could use an app you designed in the Django unit to get the same result.*
 
-Now, let's look at what those responses might look like from a backend app...
+If we open the dev tools in Chrome and click on the `Network` tab, each time we take an action on a webpage we can see the request and response that are generated:
+
+![An example of a GET request in a full-stack app](./img/bird_app.png)
+
+Now, let's look at what a request and response might look like from a backend app...
 
 ### Get Request
 
@@ -121,6 +125,8 @@ Now, let's look at what those responses might look like from a backend app...
 ### Post Request
 
 ![A Post Request](img/post_request.png)
+
+In a backend app, we follow the same request and response cycle, except that the information in the body of our requests and responses uses this pared-down format - JSON. Since it's just two machines talking to each other, they don't need any frills!
 
 ## JSON
 This is the last acronym for today, I promise. It stands for **J**ava**S**cript **O**bject **N**otation, but don't let that *Javascript* word fool you - JSON is actually used almost universally as a way to transfer data.
