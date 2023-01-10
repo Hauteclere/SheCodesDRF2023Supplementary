@@ -116,6 +116,8 @@ If we open the dev tools in Chrome and click on the `Network` tab, each time we 
 
 ![An example of a GET request in a full-stack app](./img/bird_app.png)
 
+This looks like what we expected, but if we open the `Response` tab, we'll find that the response body is a bunch of HTML. That's because in a full-stack app, the response is presented to the user, and users are human beings who want nice-looking web pages.
+
 Now, let's look at what a request and response might look like from a backend app...
 
 ### Get Request
