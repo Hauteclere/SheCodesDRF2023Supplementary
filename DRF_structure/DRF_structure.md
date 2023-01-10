@@ -48,6 +48,13 @@ What we do need to worry about right now is how the front end is going to pass t
 
 The end goal of our DRF app project will be to create an app that delivers this API for the front end to use. The front end should be able to pass a request to the back end (something like, *"list me all the crowdfunding projects!"* or, *"pledge a contribution to the 'Oliver's New Laptop' fund!"*), and the back end should execute that request, returning a useful response.
 
+### Endpoints
+Each type of request will be directed to an **endpoint** - a URL linked to a view designed to serve that type of request.
+
+An endpoint is just a fancy name for a URL in an API. It's not designed for users to access, it's designed for the frontend half of our app to interface with!
+
+### REST
+
 The particular type of API we'll be building is called a [**REST** API](https://www.redhat.com/en/topics/api/what-is-a-rest-api). This stands for **RE**presentational **S**tate **T**ransfer. REST APIs are useful because they are great at handling multiple requests from different users. They do this by being "*stateless*". This means they don't keep track of a user's information between interactions. Every request that gets sent to the API is totally self-sufficient, and doesn't need to refer to the requests that came before it to make sense. As a result, the back end doesn't need to juggle a lot of half-complete conversations.
 
 ## REST Verbs/HTTP Methods
@@ -101,3 +108,10 @@ Instead, we need to convert the data into a format that is simple enough to send
 So we need to learn a whole new language? NOPE! Because Python is excellent, the developers foresaw the need for JSON, and they built their data structures to mimic it. JSON `objects` have the same structure as Python dictionaries, and JSON `arrays` mirror Python lists. Those are the only two structures in JSON. You already know it!
 
 So, for our REST API, the *body* element of our HTTP requests and responses will be in JSON format. We'll have a few lines of code in each of our views dedicated to converting JSON to Python, and back.
+
+## What Now?
+Ok, that's a lot of info. But you made it! 
+
+The plan from here on out is for us to run through the process of building an API together using DRF. Next lesson we'll start building the app from the ground up, and as we move through the process we will focus in on each of the elements in that architectural diagram up the top, learning about it in detail.
+
+Your homework is to send your MVP plan to me by Saturday. Take a look at the project requirements on Thinkific.
