@@ -26,11 +26,6 @@ def foo(bar):
 ```
 You can also do images, links, dot-points, headings, tables... you name it. And it takes the same time to write as it would to just type the text content of your page into an editor. 
 
-Also look how pretty it lets you make your terminal:
-
-![My amazing terminal](img/bash.png)
-> Disclaimer - I spend an entire day making it look this good, and some of the stuff I did can be done in regular old windows. But seriously check it out, the little heart symbol turns red when an error occurs!
-
 Get on it!
 
 ## [WSL 2](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)
@@ -41,4 +36,11 @@ You know how annoying it is to be working through a tutorial, and then halfway t
 
 `WSL 2` is a part of the Windows operating system that is disabled by default. "WSL" stands for **W**indows **S**ubsystem for **L**inux. It will let you use your windows machine as a Linux computer. That means that all those fancy Bash shell commands will work even better for you than they will for Mac owners.
 
-I cannot stress enough how much this simplifies the development process. When I started using `WSL` it was a revelation. The hard truth is that whenever you deploy your website to let others use it, you'll be deploying it onto a system that runs some flavour of Linux. Developing your code in that system makes things much smoother. Plus, the Linux terminal makes every other command line interface seem clunky in comparison. It's so quick to set up! [Check out the guide I wrote](https://github.com/Hauteclere/wsl2_walkthrough).
+I cannot stress enough how much this simplifies the development process. When I started using `WSL` it was a revelation. The hard truth is that whenever you deploy your website to let others use it, you'll be deploying it onto a system that runs some flavour of Linux. Developing your code in that system makes things much smoother. Plus, the Linux terminal makes every other command line interface seem clunky in comparison. 
+
+Also look how pretty it lets you make your terminal:
+
+![My amazing terminal](img/bash.png)
+> Disclaimer - I spend an entire day making it look this good, and some of the stuff I did can be done in regular old Windows. But seriously check it out, the little heart symbol turns red when an error occurs!
+
+It's so quick to set up! [Check out the guide I wrote](https://github.com/Hauteclere/wsl2_walkthrough).
