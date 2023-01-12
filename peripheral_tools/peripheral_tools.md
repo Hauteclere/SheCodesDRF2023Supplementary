@@ -24,7 +24,14 @@ def foo(bar):
         "hi": "hello"
     }
 ```
-You can also do images, links, dot-points, headings, tables... you name it. And it takes the same time to write as it would to just type the text content of your page into an editor. Get on it!
+You can also do images, links, dot-points, headings, tables... you name it. And it takes the same time to write as it would to just type the text content of your page into an editor. 
+
+Also look how pretty it lets you make your terminal:
+
+![My amazing terminal](img/bash.png)
+> Disclaimer - I spend an entire day making it look this good, and some of the stuff I did can be done in regular old windows. But seriously check it out, the little heart symbol turns red when an error occurs!
+
+Get on it!
 
 ## [WSL 2](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)
 
