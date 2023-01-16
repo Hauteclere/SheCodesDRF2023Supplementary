@@ -1,7 +1,5 @@
 # Lesson 2 - Endpoints and Model Relations
 
-I promised I'd post a walkthrough of setting up and using virtual environments with the `virtualenv` package, so [here it is](./virtualenv_walkthrough.md).
-
 The code we wrote in this lesson can be found [here](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-Hauteclere/tree/session2).
 
 It can be very helpful to take a look at the DRF documentation if you're looking for more info on how to customise the generic code for your project. In particular:
