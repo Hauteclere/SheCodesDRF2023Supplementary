@@ -27,7 +27,7 @@ The standard way to do run a Python module in the terminal is to invoke the `pyt
 ```Bash
 python3 -m <module_name_here>
 ```
-Some modules can be "*added to the PATH*" when they're installed. `pip` and `virtualenv` are examples of these. When a module is added to the PATH, it is available to invoke by name without the python interpreter. So, if `pip` is on my PATH, I can just type:
+Some modules can be "*added to the PATH*" when they're installed. `pip` and `virtualenv` are examples of these. When a module is added to the PATH, it is available to be invoked by name without the python interpreter. So, if `pip` is on my PATH, I can just type:
 
 ```Bash
 pip install <some_module_name>
