@@ -4,6 +4,23 @@
 
 There are other similar tools that do the same thing - in the last unit you used a package called `venv` for the same task. `virtualenv` and `venv` are very similar.
 
+- [`virtualenv` Walkthrough](#virtualenv-walkthrough)
+  - [A Note On Running Python Modules](#a-note-on-running-python-modules)
+  - [Installation](#installation)
+    - [Updating Pip](#updating-pip)
+    - [Installing/Upgrading `virtualenv`](#installingupgrading-virtualenv)
+  - [Environment Setup](#environment-setup)
+    - [Create The Environment](#create-the-environment)
+    - [Make Sure That `venv/` Is In Your `.gitignore`](#make-sure-that-venv-is-in-your-gitignore)
+    - [Create A Requirements File](#create-a-requirements-file)
+  - [Using The Environment](#using-the-environment)
+    - [Turn It On](#turn-it-on)
+      - [On Windows:](#on-windows)
+      - [On Mac/Linux:](#on-maclinux)
+    - [Install Libraries](#install-libraries)
+    - [Deactivate the Environment](#deactivate-the-environment)
+
+
 ## A Note On Running Python Modules
 The standard way to do run a Python module in the terminal is to invoke the `python3` interpreter by name, use the `-m` flag to indicate a module, and then name the installed module. That looks like this:
 
