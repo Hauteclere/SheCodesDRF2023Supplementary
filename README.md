@@ -8,5 +8,6 @@ There might be only one, let's see how it goes...
   * I promised I'd post a walkthrough of setting up and using virtual environments with the `virtualenv` package, so [here it is](./virtualenv/virtualenv_walkthrough.md).
 * ## Lesson Three - Users
   * No major notes to share here - I shared the code we went through in class on Slack (it was slightly different to what's on Thinkific, but the thinkific code will work just fine). Also, [here's a link to the code as it was at the end of this lesson](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-Hauteclere/tree/lesson3).
+* ## [Lesson Four - Permissions and Authentication](./permissions_and_authentication/permissions_and_authentication.md)
 * ## [Appendix: Useful Peripheral Tech Tools](./peripheral_tools/peripheral_tools.md)
 
