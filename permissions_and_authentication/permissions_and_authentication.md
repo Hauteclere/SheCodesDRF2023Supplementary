@@ -4,21 +4,21 @@ The big theoretical take-away from this class was to do with **Token Authenticat
 First let's look at the alternative; the type of authentication we *won't* be using:
 
 ## Session Auth
-Under session authentication, the database stores a table of people who are currenlt logged in. If a new user hands over their username and password, the website creates a log of the event in this table (literally, *logs* them in). When someone logs out, the record is deleted.
+Under session authentication, the database stores a table of people who are currenly logged in. If a user hands over their username and password, the website creates a log of the event in this table (literally, *logs* them in). When someone logs out, the record is deleted.
 
-Once you're logged in, the website issues a scrap of data to you called a `Session Cookie` that you can send through to prove your identity in future interactions. This is really just a little file that identifies your session record in the table - **it's the equivalent of walking up to an exclusive clubhouse and saying to the bouncer "I'm on the list"**. If you log out and then provide the same cookie again, the row in the database will have been deleted, and the website will know you're lying about being logged in.
+Once you're logged in, the website issues a scrap of data to you called a `Session Cookie` that you can send through to prove your identity in future interactions. This is really just a little file that identifies your session record in the table - **it's the equivalent of walking up to an exclusive clubhouse and saying to the bouncer "I'm on the list"**. If you log **out** and then try to provide the same cookie again, the row in the database will have been deleted, and the website will know you're lying about being logged in.
 
 ![The session auth data flow](./img/cookie_flow.png)
 
 ### Why This Won't Work For Us
-The main reason we seldom use this system in modern websites is that it isn't very *scalable*. Every single logged user has to be stored in a single table in a single database. This can make the website slow, because thousands of users from all over the world are competing to send their session cookies in to be verified. 
+The main reason we seldom use this system in modern websites is that it isn't very *scalable*. Every logged-in user has to be stored in a single table in a single database. This can make the website slow, because thousands of users from all over the world are competing to send their session cookies in to be verified. 
 
 It would be better to have multiple databases to share the load, with requests being routed to the one that happens to be quietest right now. But then we run into the problem where my session record is stored in the database at the Belconnen datacentre, but the server that took my request is looking for is in the US-East datacentre...
 
 ## Token Authentication To The Rescue
 We need a way to prove our identity without having to hit the database.
 
-The way we'll accomplish this is by using a little bit of *cryptography*. When a user provides their credentials to us, we will check that they're correct by looking in th database like normal. But then instead of recording them in a table in the database, we will do some magic.
+The way we'll accomplish this is by using a little bit of *cryptography*. When a user provides their credentials to us, we will check that they're correct by looking in the database like normal. But then instead of recording them in a table in the database, we will do some magic.
 
 We'll write down their username and any other info we think is important (typically, who we are, what the current time is, when the login should expire, etc), and encrypt it with a secret key that only we know. We'll give the encrypted data back to the user. This packet of encrypted data is called a `Token`. Because the users don't have the secret key, they can't read it or fake up their own version; they just have to hang onto it.
 
