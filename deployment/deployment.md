@@ -1,4 +1,39 @@
 # Deployment!
+
+- [Deployment!](#deployment)
+  - [Phase 1: Installation](#phase-1-installation)
+    - [1.1: Install `gunicorn`](#11-install-gunicorn)
+    - [1.2: Install `whitenoise`](#12-install-whitenoise)
+    - [1.3: Install `CORS`](#13-install-cors)
+    - [1.4: Add Those Three New Packages to your `requirements.txt`](#14-add-those-three-new-packages-to-your-requirementstxt)
+    - [1.5: Install Fly](#15-install-fly)
+      - [1.5.a - On Windows:](#15a---on-windows)
+      - [1.5.b - On Mac:](#15b---on-mac)
+    - [1.6: Sign Up To Fly](#16-sign-up-to-fly)
+  - [Phase 2: Tweaking Settings](#phase-2-tweaking-settings)
+    - [2.1: The Secret Key](#21-the-secret-key)
+    - [2.2: The Debug Mode](#22-the-debug-mode)
+      - [2.2.a - On Windows:](#22a---on-windows)
+      - [2.2.b - On Mac:](#22b---on-mac)
+    - [2.3: The Static Directory](#23-the-static-directory)
+    - [2.4: The Middleware](#24-the-middleware)
+    - [2.5: The Database Location](#25-the-database-location)
+    - [2.6: Some `CORS` Stuff](#26-some-cors-stuff)
+    - [2.7: Ok Let's Make Those Tweaks!](#27-ok-lets-make-those-tweaks)
+  - [Phase 3: Create a Fly Project](#phase-3-create-a-fly-project)
+    - [3.1: Launch!](#31-launch)
+    - [3.2: Customising The `dockerfile`](#32-customising-the-dockerfile)
+    - [3.3: Customizing `fly.toml`](#33-customizing-flytoml)
+    - [3.4: Creating A File To Run The Server For Us](#34-creating-a-file-to-run-the-server-for-us)
+    - [3.5: Setting Up Some Variables And Settings For Fly](#35-setting-up-some-variables-and-settings-for-fly)
+      - [3.5.1 - Creating A Volume To Host The Database](#351---creating-a-volume-to-host-the-database)
+      - [3.5.2 - Noting The Location Of That Volume With Fly](#352---noting-the-location-of-that-volume-with-fly)
+      - [3.5.3: Setting Some Superuser Credentials](#353-setting-some-superuser-credentials)
+      - [3.5.4: Setting That Debug Setting From Earlier](#354-setting-that-debug-setting-from-earlier)
+      - [3.5.5: Setting The SECRET\_KEY](#355-setting-the-secret_key)
+  - [Phase 4: Deploy The Fly Project!](#phase-4-deploy-the-fly-project)
+
+
 This is it, people: the moment we've all been waiting for! In this lesson, we go from having a local codebase that we can use for testing, to having a globally accessible back end that can be accessed from any computer in the world.
 
 We are going to walk through the process of setting our app up to run in the cloud.  In the process we will no doubt run into some fun bugs, but that's the fun of coding!
@@ -12,43 +47,43 @@ For some of the code content in these notes I'll be using the `diff` file format
 +add this line
 ```
 
-## Installation
+## Phase 1: Installation
 First we have some things we need to install. Make sure you have our virtual environmet activated in the terminal and then navigate to the root folder (the one containing your `requirements.txt` file):
 
-### Install `gunicorn`
+### 1.1: Install `gunicorn`
 That's "g-unicorn" not "gun-icorn". When I first read this I imagined a unicorn with a gun for a horn, but actually the G is short for "green". This library will be what actually serves the site for us, substituting in for the much less powerful server that is attached to the `runserver` command.
 ```Bash
 python3 -m pip install gunicorn
 ```
 
-### Install `whitenoise`
+### 1.2: Install `whitenoise`
 This is a library that will handle serving static files for us, if we ever have any. Some info on it here: https://pypi.org/project/whitenoise/
 
 ```Bash
 python3 -m pip install whitenoise
 ```
 
-### Install `CORS`
+### 1.3: Install `CORS`
 This is a security library to prevent people getting hacked on our site.
 ```Bash
 python3 -m pip install django-cors-headers
 ```
 
-### Add Those Three New Packages to your `requirements.txt`
+### 1.4: Add Those Three New Packages to your `requirements.txt`
 ```Bash
 python3 -m pip freeze > requirements.txt
 ```
 
-### Install Fly
+### 1.5: Install Fly
 This one is a little more complex - it's not a Python package, so we aren't installing it in our virtual environment. It's a terminal program that we are installing on our computers.
 
-#### On Windows:
+#### 1.5.a - On Windows:
 
 ```cmd
 iwr https://fly.io/install.ps1 -useb | iex
 ```
 
-#### On Mac:
+#### 1.5.b - On Mac:
 First make sure that `brew` is installed
 ```Bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
@@ -61,7 +96,7 @@ Then use `brew` to install Fly:
 brew install flyctl
 ```
 
-### Sign Up To Fly
+### 1.6: Sign Up To Fly
 First check that it is working by running
 ```Bash
 fly help
@@ -74,30 +109,30 @@ At this point, you will need to provide a payment method. You **do** need to add
 
 > Your first three projects (or VMs) are free with 3GB of storage total: https://fly.io/docs/about/pricing/#free-allowances <br><br> Over this allowance, you will be charged for the amount of data storage you use. If you accidentally go over, Fly is pretty good about refunding: https://fly.io/docs/about/credit-cards/
 
-## Tweaking Settings
+## Phase 2: Tweaking Settings
 We are changing a few things. Let's talk through them before we modify the code.
 
-### The Secret Key
+### 2.1: The Secret Key
 Django needs a value for the `SECRET_KEY` variable in order to run, but once we've launched, we don't want to use the value that is stored in our code - this is visible on Github for anyone to steal. We'll tweak our settings so that Django tries to find a value stored on the computer it's running on first, and only uses the hardcoded value if it doesn't find anything. 
 
-### The Debug Mode
+### 2.2: The Debug Mode
 While we are at it, we had also better make it so that Django doesn't give complex, developer-friendly error messages to the general public. Those tend to freak out the normies. We'll set it up so that it turns off the error messages by default, and only makes them available to us when we set a local variable for them.
 
 Let's set this variable locally now before we forget. That way we will still see those useful errors when we are running the back end locally during development.
 
-#### On Windows:
+#### 2.2.a - On Windows:
 ```cmd
 $env:DJANGO_DEBUG = "True"
 ```
 > If that didn’t work, follow these steps instead: https://helpdeskgeek.com/how-to/create-custom-environment-variables-in-windows/ (up to
 and excluding the “Explorer” section). Then restart powershell and make sure you reactivate your virtual environment.
 
-#### On Mac:
+#### 2.2.b - On Mac:
 ```Bash
 export DJANGO_DEBUG=True
 ```
 
-### The Static Directory
+### 2.3: The Static Directory
 When `DJANGO_DEBUG` is turned off, Django expects us to have set up a `static/` directory. This is used to store files that need to be available for some projects, like CSS or favicons. We don't have those in this example project, but Django is a stickler. So we'll give it what it wants.
 
 We don't want these files uploaded to our Github repo, though, so right now while we remember we should add the directory to our `.gitignore` file:
@@ -115,16 +150,16 @@ __pycache__/
 +staticfiles
 ```
 
-### The Middleware
+### 2.4: The Middleware
 We need to tell Django to use that `whitenoise` library we installed earlier, so we'll add it to our list of middleware.
 
-### The Database Location
+### 2.5: The Database Location
 We are going to need to point Django to a different database location on our deployed app than it uses for the local version. That's because we won't be pointing it to a database on our own machine; it'll be a database on someone else's machine, and that database will be in a different spot.
 
-### Some `CORS` Stuff
+### 2.6: Some `CORS` Stuff
 These are settings that prevent people from being tricked into taking actions on the site when malicious actors forward them there without their knowledge. It's security stuff!
 
-### Ok Let's Make Those Tweaks!
+### 2.7: Ok Let's Make Those Tweaks!
 
 Open your `settings.py` and make the following modifications (you can substitute the secret key string that is already in use for your project). 
 
@@ -212,7 +247,8 @@ Now try doing a `runserver` to check for errors:
 python3 ./crowdfunding/manage.py runserver
 ```
 
-## Create a Fly Project
+## Phase 3: Create a Fly Project
+### 3.1: Launch!
 Use the following command:
 ```Bash
 fly launch
@@ -228,7 +264,7 @@ After this command has finished running, you will notice that a couple of new fi
 
 We will be customising some of these to set up our deployment. 
 
-### Customising The `dockerfile`
+### 3.2: Customising The `dockerfile`
 ```diff
 ARG PYTHON_VERSION=3.10-slim-buster
 
@@ -261,7 +297,7 @@ EXPOSE 8000
 +CMD ["/code/run.sh"]
 ```
 
-### Customizing `fly.toml`
+### 3.3: Customizing `fly.toml`
 ```diff
 # fly.toml
 
@@ -276,7 +312,7 @@ EXPOSE 8000
 
 ```
 
-### Creating A File To Run The Server For Us
+### 3.4: Creating A File To Run The Server For Us
 When we run the server in production we won't use the `manage.py runserver` command - that's just for development.
 
 Instead, we'll be using the `gunicorn` library that we installed earlier. To set it up so that the cloud machine we are deploying to automatically starts up `gunicorn` for us, we will write a file called `run.sh`. You can see we've referenced it already up there in our `dockerfile`.
@@ -290,18 +326,18 @@ python manage.py createsuperuser --no-input
 gunicorn --bind :8000 --workers 1 crowdfunding.wsgi
 ```
 
-### Setting Up Some Variables And Settings For Fly
-#### Creating A Volume To Host The Database:
+### 3.5: Setting Up Some Variables And Settings For Fly
+#### 3.5.1 - Creating A Volume To Host The Database
 > **You need to substitute in the funky name that Fly generated for your app here!** For instance, mine was `quiet-tree-5089`
 ```Bash
 fly volumes create -a <app-name> -r syd --size 1 dbvol
 ```
 
-#### Noting The Location Of That Volume With Fly
+#### 3.5.2 - Noting The Location Of That Volume With Fly
 ```Bash
 flyctl secrets set DATABASE_DIR='/dbvol/db.sqlite3'
 ```
-#### Setting Some Superuser Credentials
+#### 3.5.3: Setting Some Superuser Credentials
 > **You need to substitute in an email address and secure password here!**
 ```Bash
 flyctl secrets set DJANGO_SUPERUSER_USERNAME='admin'
@@ -313,13 +349,13 @@ flyctl secrets set DJANGO_SUPERUSER_EMAIL='<your-email-address>'
 flyctl secrets set DJANGO_SUPERUSER_PASSWORD='<secure-password>'
 ```
 
-#### Setting That Debug Setting From Earlier
+#### 3.5.4: Setting That Debug Setting From Earlier
 Technically, we've made it so that you don't need to set this in deployment, but it never hurts to be explicit.
 ```Bash
 flyctl secrets set DJANGO_DEBUG=False
 ```
 
-#### Setting The SECRET_KEY
+#### 3.5.5: Setting The SECRET_KEY
 This bit is pretty important. We Need to pick a secure secret key, and also not write it down or back it up anywhere. Not even we need to know this - it's only for the deployed machine.
 
 You can generate one here: https://djecrety.ir/
@@ -330,7 +366,7 @@ You can generate one here: https://djecrety.ir/
 flyctl secrets set DJANGO_SECRET_KEY='<your-secret-key>'
 ```
 
-## Deploy The Fly Project!
+## Phase 4: Deploy The Fly Project!
 One command:
 ```Bash
 fly deploy
