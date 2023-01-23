@@ -1,7 +1,9 @@
 # Deployment!
 This is it, people: the moment we've all been waiting for! In this lesson, we go from having a local codebase that we can use for testing, to having a globally accessible back end that can be accessed from any computer in the world.
 
-In this lesson we are going to walk through the process of setting our app up to run in the cloud. ("The Cloud" is such a buzzword... really what it means is "on someone else's machine somewhere, which is being provided to us to run our code and make it available to the world". *Technically* it is possible to host a website from your own laptop, but it's totally impractical/insecure, and you'd never be able to turn the laptop off again or the website would go down.) In the process we will no doubt run into some fun bugs, but that's the whole fun of coding!
+We are going to walk through the process of setting our app up to run in the cloud.  In the process we will no doubt run into some fun bugs, but that's the fun of coding!
+
+> "The Cloud" is such a buzzword... really what it means is "on someone else's machine somewhere, which is being provided to us to run our code and make it available to the world". *Technically* it is possible to host a website from your own laptop, but it's totally impractical/insecure, and you'd never be able to turn the laptop off again or the website would go down. In the process we will no doubt run into some fun bugs, but that's the whole fun of coding!
 
 For some of the code content in these notes I'll be using the `diff` file format. This is a way of expressing changes to files. Lines that are to be deleted are prepended with a `-` (minus) symbol and coloured red. Lines that are to be added are prepended with a `+` (plus) and are coloured green. You don't need to include the minuses and plusses in your code; it's just the best way to display these changes in Markdown on Github. 
 
