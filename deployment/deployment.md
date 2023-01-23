@@ -7,6 +7,11 @@ We are going to walk through the process of setting our app up to run in the clo
 
 For some of the code content in these notes I'll be using the `diff` file format. This is a way of expressing changes to files. Lines that are to be deleted are prepended with a `-` (minus) symbol and coloured red. Lines that are to be added are prepended with a `+` (plus) and are coloured green. You don't need to include the minuses and plusses in your code; it's just the best way to display these changes in Markdown on Github. 
 
+```diff
+-delete this line
++add this line
+```
+
 ## Installation
 First we have some things we need to install. Make sure you have our virtual environmet activated in the terminal and then navigate to the root folder (the one containing your `requirements.txt` file):
 
