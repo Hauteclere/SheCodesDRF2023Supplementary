@@ -1,6 +1,7 @@
 # Deployment!
 
 - [Deployment!](#deployment)
+  - [Phase 0: Commit!](#phase-0-commit)
   - [Phase 1: Installation](#phase-1-installation)
     - [1.1: Install `gunicorn`](#11-install-gunicorn)
     - [1.2: Install `whitenoise`](#12-install-whitenoise)
@@ -32,6 +33,7 @@
       - [3.5.4: Setting That Debug Setting From Earlier](#354-setting-that-debug-setting-from-earlier)
       - [3.5.5: Setting The SECRET\_KEY](#355-setting-the-secret_key)
   - [Phase 4: Deploy The Fly Project!](#phase-4-deploy-the-fly-project)
+  - [Phase 5: Commit! Again!](#phase-5-commit-again)
 
 
 This is it, people: the moment we've all been waiting for! In this lesson, we go from having a local codebase that we can use for testing, to having a globally accessible back end that can be accessed from any computer in the world.
@@ -46,6 +48,22 @@ For some of the code content in these notes I'll be using the `diff` file format
 -delete this line
 +add this line
 ```
+
+## Phase 0: Commit!
+Before we get started, let's make sure everything is backed up. You should stage your changes, make a commit, and push that commit. 
+
+```Bash
+git add .
+```
+
+```Bash
+git commit -m "pre-deployment commit"
+```
+
+```Bash
+git push origin main
+```
+Feel free to use github desktop if that's what you've been using until now. Also feel free to make a new branch to work on if you are so inclined.
 
 ## Phase 1: Installation
 First we have some things we need to install. Make sure you have our virtual environmet activated in the terminal and then navigate to the root folder (the one containing your `requirements.txt` file):
@@ -384,6 +402,17 @@ If your site is up and running, try navigating to an endpoint that doesn't exist
 
 If you're stuck, have a look at my working code here and see what's different: https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-Hauteclere/tree/test_deploy
 
+## Phase 5: Commit! Again!
 
+For land's sake, if you got it working lock those changes in!
+```Bash
+git add .
+```
 
+```Bash
+git commit -m "post-deployment commit"
+```
 
+```Bash
+git push origin main
+```
