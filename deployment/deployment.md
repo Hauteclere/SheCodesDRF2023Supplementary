@@ -306,7 +306,7 @@ RUN set -ex && \
 +COPY crowdfunding/ /code/
 
 RUN python manage.py collectstatic --noinput
-RUN chmod +x /code/run.sh
++RUN chmod +x /code/run.sh
 
 EXPOSE 8000
 
