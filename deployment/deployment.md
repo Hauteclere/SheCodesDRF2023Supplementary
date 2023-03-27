@@ -320,7 +320,7 @@ EXPOSE 8000
 
 ### 3.3: Customizing `fly.toml`
 
-> :warning: **The instructions below have recently been updated to be different for Windows users!** Read through carefully.
+> :warning: **(27th March 2023) The instructions below have recently been updated to be different for Windows users!** Read through carefully.
 
 #### 3.3a - On Windows:
 
