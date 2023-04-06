@@ -498,7 +498,7 @@ Once these changes are in the main branch on Github, an action will run to deplo
 If everything ran successfully, go to `https://<your_project_name>.fly.dev/projects/` to see if your site is running! 
 
 Did it work? Mine did. That thrill never gets old. I dunno about you but I feel like this:
-![In place of a Dark Lord you would have a Queen! Not dark but beautiful and terrible as the Dawn! Treacherous as the Seas! Stronger than the foundations of the Earth!](img/a_queen.jpg)
+![Galadriel looks at the camera with a powerful expression and shouts: "In place of a Dark Lord you would have a Queen! Not dark but beautiful and terrible as the Dawn! Treacherous as the Seas! Stronger than the foundations of the Earth! All shall love me and despair!"](img/a_queen.jpg)
 
 If it didn't work, grab a mentor and let's get bugshooting!
 
