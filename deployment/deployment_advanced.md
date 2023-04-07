@@ -39,7 +39,6 @@
     - [Step 2: Saving the token as a Github Secret](#step-2-saving-the-token-as-a-github-secret)
     - [Step 3: Check your .gitignore](#step-3-check-your-gitignore)
     - [Step 4: Create the action.](#step-4-create-the-action)
-  - [Phase 5: Commit! Again!](#phase-5-commit-again)
 
 
 This is it, people: the moment we've all been waiting for! In this lesson, we go from having a local codebase that we can use for testing, to having a globally accessible back end that can be accessed from any computer in the world.
@@ -504,19 +503,5 @@ If it didn't work, grab a mentor and let's get bugshooting!
 
 If your site is up and running, try navigating to an endpoint that doesn't exist; you should get a plain boring error message, instead of the detailed ones we are used to.
 
-If you're stuck, have a look at my working code here and see what's different: https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-Hauteclere/tree/test_deploy
+If you're stuck, have a look at my working code here and see what's different: https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-Hauteclere
 
-## Phase 5: Commit! Again!
-
-For land's sake, if you got it working lock those changes in!
-```Bash
-git add .
-```
-
-```Bash
-git commit -m "post-deployment commit"
-```
-
-```Bash
-git push origin main
-```
